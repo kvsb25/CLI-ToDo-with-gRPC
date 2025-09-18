@@ -1,6 +1,9 @@
-FROM node:20
+# FROM node:20
+FROM ubuntu:rolling
 
-WORKDIR /app
+WORKDIR /app/main
+
+RUN apt-get update && apt-get install -y nodejs npm
 
 COPY package*.json ./
 
@@ -9,3 +12,5 @@ RUN npm install --production --silent
 COPY . .
 
 ENV SERVER_PORT="server:8080"
+
+CMD ["bash"]

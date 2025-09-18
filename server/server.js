@@ -5,7 +5,13 @@ const grpcObject = grpc.loadPackageDefinition(packageDef);
 const todoPackage = grpcObject.todoPackage;
 
 const server = new grpc.Server();
-server.bindAsync("0.0.0.0:8080", grpc.ServerCredentials.createInsecure(), () => {}); //grpc.ServerCredentials.createSsl() for secure server
+server.bindAsync("0.0.0.0:8080", grpc.ServerCredentials.createInsecure(), (err, port) => {
+	if(err){
+		console.error("Failed to bind")
+		return;
+	}
+	server.start();
+}); //grpc.ServerCredentials.createSsl() for secure server
 //server.bindAsync("localhost:8080", grpc.ServerCredentials.createInsecure());
 server.addService(todoPackage.Todo.service,
 	{

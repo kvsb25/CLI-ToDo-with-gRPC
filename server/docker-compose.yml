@@ -1,8 +1,8 @@
 services:
   server:
-    build: ./server
+    build: .
   
   client:
-    build: ./client
+    build: ../client
     depends_on:
       - server

@@ -4,7 +4,6 @@ const packageDef = protoLoader.loadSync("todo.proto", {});
 const grpcObject = grpc.loadPackageDefinition(packageDef);
 const todoPackage = grpcObject.todoPackage;
 
-const port = "0.0.0.0:8080";
 const server = new grpc.Server();
 server.bindAsync("0.0.0.0:8080", grpc.ServerCredentials.createInsecure(), () => {}); //grpc.ServerCredentials.createSsl() for secure server
 //server.bindAsync("localhost:8080", grpc.ServerCredentials.createInsecure());

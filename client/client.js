@@ -6,7 +6,8 @@ const packageDef = protoLoader.loadSync("todo.proto", {});
 const grpcObject = grpc.loadPackageDefinition(packageDef);
 const todoPackage = grpcObject.todoPackage;
 
-const client = new todoPackage.Todo("localhost:8080", grpc.credentials.createInsecure());
+// const client = new todoPackage.Todo("localhost:8080", grpc.credentials.createInsecure());
+const client = new todoPackage.Todo(process.env.SERVER_PORT, grpc.credentials.createInsecure());
 const text = process.argv[2];
 
 // remote call to createTodo. Single request response call
